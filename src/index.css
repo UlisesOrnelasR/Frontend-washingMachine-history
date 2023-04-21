@@ -1,0 +1,59 @@
+@import url('http://fonts.cdnfonts.com/css/myriad-pro');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Myriad-Pro', sans-serif;
+}
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: var(--font-roboto);
+}
+input {
+    overflow: visible;
+}
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+  
+  .ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+  }
+
+/* Custom styles */
+@layer components {
+    .containerApp {
+        @apply relative overflow-x-auto tracking-wide;
+    }
+
+    .innerWidth {
+        @apply w-full xxl:max-w-[1280px] xxl:mx-auto;
+    }
+
+    .paddings {
+        @apply sm:p-[4rem] md:py-[2rem] p-[1.5rem];
+    }
+    .yPaddings {
+        @apply sm:pt-[4rem] sm:pb-[4rem] xl:pt-[2rem] xl:pb-[2rem] pt-[3rem] pb-[3rem];
+    }
+    .xPaddings {
+        @apply sm:px-[4rem] md:px-[2rem] px-[1.5rem];
+    }
+}
+
+.font-myriad {
+    font-family: 'Myriad-Pro', sans-serif;
+}
