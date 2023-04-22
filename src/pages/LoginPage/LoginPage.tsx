@@ -40,14 +40,13 @@ export const LoginPage = () => {
 
   return (
     <div className="bg-dark flex flex-col min-h-screen md:p-8">
-      <div className="p-8 mb-14">
+      <div className="p-8 mb-8">
         <h1 className="text-gray-100 text-3xl font-medium tracking-widest">
           Servicio al cliente
         </h1>
       </div>
       <div className="p-8 flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-1/2">
-          {" "}
           <h3 className="text-gray-500 uppercase text-sm font-bold mb-2">
             Ingresa a la plataforma
           </h3>
