@@ -9,6 +9,7 @@ module.exports = {
         tertiary: "#0F4C75",
         dark: "#1B262C",
         black: "#343434",
+        text: "#F6F1F1",
       },
     },
   },
