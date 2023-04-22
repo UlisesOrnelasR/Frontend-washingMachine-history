@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import logo from "/images/logo.png";
+import Swal from "sweetalert2";
 
 type FormValues = {
   registerName: string;
@@ -13,21 +14,7 @@ type FormValues = {
 const resolver: Resolver<FormValues> = async (values) => {
   return {
     values: values.registerEmail && values.registerPassword ? values : {},
-    errors: !values.registerEmail
-      ? {
-          registerEmail: {
-            type: "required",
-            message: "This is required.",
-          },
-        }
-      : !values.registerPassword
-      ? {
-          registerPassword: {
-            type: "required",
-            message: "This is required.",
-          },
-        }
-      : !values.registerName
+    errors: !values.registerName
       ? {
           registerName: {
             type: "required",
@@ -37,6 +24,20 @@ const resolver: Resolver<FormValues> = async (values) => {
       : !values.registerLastName
       ? {
           registerLastName: {
+            type: "required",
+            message: "This is required.",
+          },
+        }
+      : !values.registerEmail
+      ? {
+          registerEmail: {
+            type: "required",
+            message: "This is required.",
+          },
+        }
+      : !values.registerPassword
+      ? {
+          registerPassword: {
             type: "required",
             message: "This is required.",
           },
@@ -67,6 +68,10 @@ export const RegisterPage = () => {
     registerPassword,
     registerPassword2,
   }) => {
+    if (registerPassword !== registerPassword2) {
+      Swal.fire("Error", "Passwords do not match", "error");
+      return;
+    }
     console.log(registerEmail);
     console.log(registerName);
     console.log(registerLastName);
@@ -84,7 +89,7 @@ export const RegisterPage = () => {
       <div className="p-8 flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-1/2">
           <h3 className="text-gray-500 uppercase text-sm font-bold mb-2">
-            Empieza gratis
+            Regístrate gratis
           </h3>
           <h1 className="text-6xl text-white font-medium mb-2">
             Crea una cuenta<span className="text-secondary">.</span>
@@ -98,7 +103,7 @@ export const RegisterPage = () => {
               Ingresa
             </a>
           </span>
-          <form className="mt-8">
+          <form className="mt-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="w-full lg:w-4/5 mb-4 flex flex-col md:flex-row items-center justify-between gap-4">
               <input
                 type="text"
@@ -174,7 +179,10 @@ export const RegisterPage = () => {
             </a>
           </div> */}
             <div className="">
-              <button className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-full hover:bg-tertiary transition-colors">
+              <button
+                type="submit"
+                className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-full hover:bg-tertiary transition-colors"
+              >
                 Crear cuenta
               </button>
             </div>

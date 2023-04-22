@@ -60,7 +60,7 @@ export const LoginPage = () => {
               className="text-secondary hover:underline"
             >
               {" "}
-              Registrate
+              Regístrate
             </a>
           </span>
           <form className="mt-8" onSubmit={handleSubmit(onSubmit)}>
