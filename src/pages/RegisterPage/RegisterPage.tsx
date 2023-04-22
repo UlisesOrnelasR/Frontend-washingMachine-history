@@ -112,7 +112,7 @@ export const RegisterPage = () => {
                   pattern: /^\S+@\S+$/i,
                 })}
                 autoComplete="off"
-                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-[#343434] text-gray-100 group ${
+                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.registerName && "outline-red-500"
                 }`}
                 placeholder="Nombre(s)"
@@ -124,7 +124,7 @@ export const RegisterPage = () => {
                   pattern: /^\S+@\S+$/i,
                 })}
                 autoComplete="off"
-                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-[#343434] text-gray-100 group ${
+                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.registerLastName && "outline-red-500"
                 }`}
                 placeholder="Apellidos"
@@ -138,7 +138,7 @@ export const RegisterPage = () => {
                   pattern: /^\S+@\S+$/i,
                 })}
                 autoComplete="off"
-                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-[#343434] text-gray-100 group ${
+                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.registerEmail && "outline-red-500"
                 }`}
                 placeholder="Correo electrónico"
@@ -164,7 +164,7 @@ export const RegisterPage = () => {
                   required: true,
                 })}
                 autoComplete="off"
-                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-[#343434] text-gray-100 group ${
+                className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.registerPassword2 && "outline-red-500"
                 }`}
                 placeholder="Confirma tu contraseña"

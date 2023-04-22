@@ -6,7 +6,7 @@ type PrivateRouteProps = {
 };
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const status: String = "not-authenticated"; // "checking"  "authenticated"  "not-authenticated"
+  const status: String = "authenticated"; // "checking"  "authenticated"  "not-authenticated"
 
   if (status === "checking") {
     return <h2>Loading</h2>;
