@@ -14,7 +14,7 @@ export const Navbar = () => {
           </h1>
         </div>
         <div>
-          <button className="flex items-center gap-2 border border-red-600 text-red-600 py-2 px-4 hover:bg-red-600 hover:text-white rounded-xl transition-colors">
+          <button className="flex items-center gap-2 border border-red-600 bg-red-600 text-white py-2 px-4 hover:bg-red-800 hover:border-red-800  rounded-xl transition-colors">
             <IconLogout /> Salir
           </button>
         </div>
