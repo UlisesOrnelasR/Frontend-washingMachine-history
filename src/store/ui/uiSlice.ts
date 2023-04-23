@@ -1,10 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, SliceCaseReducers} from "@reduxjs/toolkit";
+
+interface UiState {
+    isServiceModalOpen: boolean;
+  }
+
 
 export const uiSlice = createSlice({
     name:  'ui',
     initialState: {
         isServiceModalOpen: false
-    },
+    } as UiState,
     reducers: {
         onOpenServiceModal: (state) => {
             state.isServiceModalOpen = true;
@@ -13,8 +18,11 @@ export const uiSlice = createSlice({
         onCloseServiceModal: (state) => {
             state.isServiceModalOpen = false;
         }
-    }
+    } as SliceCaseReducers<UiState> &{
+        onOpenServiceModal: (state:  UiState) => void;
+        onCloseServiceModal: (state:   UiState) => void;
+    },
 })
 
 // Action creators are generated for each case reducer function
-export const { onOpenServiceModal } = uiSlice.actions;
+export const { onOpenServiceModal,onCloseServiceModal } = uiSlice.actions;
