@@ -181,7 +181,7 @@ export const RegisterPage = () => {
             <div className="">
               <button
                 type="submit"
-                className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-full hover:bg-tertiary transition-colors"
+                className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-xl hover:bg-tertiary transition-colors"
               >
                 Crear cuenta
               </button>

@@ -101,7 +101,7 @@ export const LoginPage = () => {
             </div> */}
             <div className="">
               <button
-                className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-full hover:bg-tertiary transition-colors"
+                className="bg-secondary text-white w-full lg:w-4/5 py-3 px-4 rounded-xl hover:bg-tertiary transition-colors"
                 type="submit"
               >
                 Iniciar sesión

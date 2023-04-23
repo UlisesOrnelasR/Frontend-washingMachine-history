@@ -6,8 +6,10 @@ export const Navbar = () => {
     <nav className="h-20 bg-black">
       <div className="flex items-center justify-between h-full px-8">
         <div className="flex items-end gap-3">
-          <div>
+          <div className="relative">
             <img src={logo} alt="lo" className="w-8" />
+            <span className="absolute bg-green-600 w-2 h-2 top-0 right-0.5 rounded-full ring-2 ring-white"></span>
+            <span className="animate-ping opacity-75 absolute bg-green-600 w-2 h-2 top-0 right-0.5 rounded-full ring-2 ring-white"></span>
           </div>
           <h1 className="text-xl text-white font-bold mb-2">
             Ulises<span className="text-secondary">.</span>

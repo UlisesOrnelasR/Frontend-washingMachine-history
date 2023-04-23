@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^2.17.0",
+    "@types/date-fns": "^2.6.0",
+    "@types/moment": "^2.13.0",
+    "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
