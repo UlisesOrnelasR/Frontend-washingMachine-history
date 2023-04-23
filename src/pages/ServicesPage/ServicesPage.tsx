@@ -1,4 +1,5 @@
 import { Table } from "./components";
+import { ModalService } from "./components";
 
 export const ServicesPage = () => {
   return (
@@ -8,6 +9,7 @@ export const ServicesPage = () => {
           Registros de servicios a clientes
         </h1>
         <Table />
+        <ModalService />
       </div>
     </div>
   );
