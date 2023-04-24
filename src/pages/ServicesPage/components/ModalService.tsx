@@ -1,26 +1,17 @@
-import React from "react";
-import { useState } from "react";
 import Modal from "react-modal";
 import { IconX } from "@tabler/icons-react";
+import { useUiStore } from "../../../hooks/useUiStore";
 
 Modal.setAppElement("#root");
 
 export const ModalService = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const { isServiceModalOpen, closeServiceModal } = useUiStore();
 
   return (
     <Modal
-      isOpen={modalIsOpen}
+      isOpen={isServiceModalOpen}
       // onAfterOpen={afterOpenModal}
-      onRequestClose={closeModal}
+      onRequestClose={closeServiceModal}
       className="modal"
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
@@ -33,7 +24,7 @@ export const ModalService = () => {
         <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-400" />
         <div>I am a modal</div>
         <button
-          onClick={closeModal}
+          onClick={closeServiceModal}
           className="absolute top-0 right-0 hover:scale-110 duration-300 transition ease-in-out"
         >
           <IconX size={25} color="red" />

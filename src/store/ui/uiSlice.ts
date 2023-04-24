@@ -1,8 +1,5 @@
 import { createSlice, SliceCaseReducers} from "@reduxjs/toolkit";
-
-interface UiState {
-    isServiceModalOpen: boolean;
-  }
+import { UiState } from "../../models/ui";
 
 
 export const uiSlice = createSlice({

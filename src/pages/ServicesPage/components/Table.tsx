@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { useUiStore } from "../../../hooks/useUiStore";
 
 export const Table = () => {
+  const { openServiceModal } = useUiStore();
+
   return (
     <>
       <div className="overflow-x-auto">
@@ -58,7 +61,10 @@ export const Table = () => {
               </td>
 
               <td className="whitespace-nowrap px-4 py-2">
-                <p className="inline-block rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700">
+                <p
+                  onClick={() => openServiceModal()}
+                  className="inline-block rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 cursor-pointer"
+                >
                   Editar
                 </p>
               </td>
