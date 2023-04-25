@@ -1,9 +1,8 @@
 export interface UiState {
-    isServiceModalOpen: boolean;
-  }
+  isServiceModalOpen: boolean;
+}
 
-  export interface UiHook {
-    isServiceModalOpen: boolean;
-    openServiceModal: () => void;
-    closeServiceModal: () => void;
-  }
+export interface UseUiStoreHook extends UiState {
+  openServiceModal: () => void;
+  closeServiceModal: () => void;
+}

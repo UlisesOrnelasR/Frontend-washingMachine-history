@@ -1,24 +1,20 @@
-import { useSelector,useDispatch } from "react-redux";
-import { RootState } from "../store"; 
-import { UiHook } from "../models/ui";
-import { onOpenServiceModal,onCloseServiceModal } from "../store/ui/uiSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store";
+import { UseUiStoreHook } from "../models/ui";
+import { onOpenServiceModal, onCloseServiceModal } from "../store/ui/uiSlice";
 
+export const useUiStore = (): UseUiStoreHook => {
+  const dispatch = useDispatch();
 
-export const useUiStore = (): UiHook => {
-    const dispatch = useDispatch();
-
-  const { isServiceModalOpen } = useSelector(
-    (state: RootState) => state.ui
-  );
+  const { isServiceModalOpen } = useSelector((state: RootState) => state.ui);
 
   const openServiceModal: () => void = () => {
-    dispatch(onOpenServiceModal())
-  }
+    dispatch(onOpenServiceModal());
+  };
 
   const closeServiceModal: () => void = () => {
-     dispatch(onCloseServiceModal())
-  
-  }
+    dispatch(onCloseServiceModal());
+  };
 
   return {
     // Propiedades
