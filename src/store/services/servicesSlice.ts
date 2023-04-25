@@ -51,6 +51,18 @@ export const servicesSlice = createSlice({
         state.activeService = null;
       }
     },
+    onLoadServices: (state, { payload = [] }) => {
+      state.isLoadingServices = false;
+      // state.events = payload;
+      payload.forEach((service) => {
+        const exists = state.services.some(
+          (dbEvent) => dbEvent.id === service.id
+        );
+        if (!exists) {
+          state.services.push(service);
+        }
+      });
+    },
     onLogoutServices: (state) => {
       state.isLoadingServices = false;
       state.services = [];
@@ -71,6 +83,10 @@ export const servicesSlice = createSlice({
       state: ServicesState,
       action: PayloadAction<Service>
     ) => void;
+    onLoadServices: (
+      state: ServicesState,
+      action: PayloadAction<Service[]>
+    ) => void;
   },
 });
 
@@ -81,4 +97,5 @@ export const {
   onUpdateService,
   onDeleteService,
   onLogoutServices,
+  onLoadServices,
 } = servicesSlice.actions;
