@@ -1,40 +1,17 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useUiStore } from "../../../hooks/useUiStore";
-
-const services = [
-  {
-    id: "1",
-    cliente: "Juan Gonzales",
-    fecha: "12/12/2022",
-    marca: "Whirpool",
-    falla: "Golpeaba la tina",
-    piezas_cambiadas: "amortiguadores",
-    costo_servicio: "400",
-    domicilio: "Calle 123",
-    user: {
-      uid: "1",
-      name: "Ulises",
-    },
-  },
-  {
-    id: "2",
-    cliente: "Pwlon Bañuelos",
-    fecha: "10/09/2022",
-    marca: "GE",
-    falla: "Tiraba agua",
-    piezas_cambiadas: "Bomba de agua",
-    costo_servicio: "700",
-    domicilio: "Calle 456",
-    user: {
-      uid: "1",
-      name: "Ulises",
-    },
-  },
-];
+import { useServicesStore } from "../../../hooks/useServicesStore";
+import { Service } from "../../../models/services";
 
 export const Table = () => {
   const { openServiceModal } = useUiStore();
+  const { services, setActiveService } = useServicesStore();
+
+  const handleServiceClick = (service: Service) => {
+    setActiveService(service);
+    openServiceModal();
+  };
 
   return (
     <>
@@ -68,38 +45,41 @@ export const Table = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            <tr>
-              <td className="whitespace-nowrap px-4 py-2 font-bold text-text">
-                John Doe
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-text">
-                {format(new Date(2014, 6, 27), "do 'de' MMMM yyyy", {
-                  locale: es,
-                })}
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-text">
-                Web Developer
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-text">
-                Tiraba agua
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-text max-w-sm overflow-x-auto">
-                Actuador y sensor
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-text">$500</td>
-              <td className="whitespace-nowrap px-4 py-2 text-text">
-                Calle 123 # 45-67
-              </td>
-
-              <td className="whitespace-nowrap px-4 py-2">
-                <p
-                  onClick={() => openServiceModal()}
-                  className="inline-block rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 cursor-pointer"
-                >
-                  Editar
-                </p>
-              </td>
-            </tr>
+            {services.map((service) => (
+              <tr key={service.id}>
+                <td className="whitespace-nowrap px-4 py-2 font-bold text-text">
+                  {service.cliente}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text">
+                  {format(new Date(service.fecha), "do 'de' MMMM yyyy", {
+                    locale: es,
+                  })}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text">
+                  {service.marca}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text">
+                  {service.falla}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text max-w-sm overflow-x-auto">
+                  {service.piezas_cambiadas}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text">
+                  {service.costo_servicio}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-text">
+                  {service.domicilio}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2">
+                  <p
+                    onClick={() => handleServiceClick(service)}
+                    className="inline-block rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-700 cursor-pointer"
+                  >
+                    Editar
+                  </p>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
