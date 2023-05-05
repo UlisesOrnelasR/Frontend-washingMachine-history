@@ -4,11 +4,12 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { ServicesState, Service } from "../../models/services";
+import { format } from "date-fns";
 
-const mockEvent: Service = {
+const mockService: Service = {
   id: "1",
   cliente: "Juan Gonzales",
-  fecha: "12/12/2022",
+  fecha: format(new Date(), "yyyy-MM-dd"),
   marca: "Whirpool",
   falla: "Golpeaba la tina",
   piezas_cambiadas: "amortiguadores",
@@ -24,7 +25,7 @@ export const servicesSlice = createSlice({
   name: "services",
   initialState: {
     isLoadingServices: false,
-    services: [mockEvent],
+    services: [mockService],
     activeService: null,
   } as ServicesState,
   reducers: {
