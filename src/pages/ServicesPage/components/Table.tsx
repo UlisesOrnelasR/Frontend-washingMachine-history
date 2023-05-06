@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { es } from "date-fns/locale";
 import { useUiStore } from "../../../hooks/useUiStore";
 import { useServicesStore } from "../../../hooks/useServicesStore";
@@ -51,9 +51,13 @@ export const Table = () => {
                   {service.cliente}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {format(new Date(service.fecha), "do 'de' MMMM yyyy", {
-                    locale: es,
-                  })}
+                  {format(
+                    addDays(new Date(service.fecha), 1),
+                    "do 'de' MMMM yyyy",
+                    {
+                      locale: es,
+                    }
+                  )}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
                   {service.marca}
