@@ -27,7 +27,6 @@ export const servicesSlice = createSlice({
     isLoadingServices: false,
     services: [mockService],
     activeService: null,
-    editingTheService: false,
   } as ServicesState,
   reducers: {
     onSetActiveService: (state, action: PayloadAction<Service>) => {
@@ -73,9 +72,6 @@ export const servicesSlice = createSlice({
     onUnSetActiveService: (state) => {
       state.activeService = null;
     },
-    onEditingService: (state, action) => {
-      state.editingTheService = action.payload;
-    },
   } as SliceCaseReducers<ServicesState> & {
     onLogoutServices: (state: ServicesState) => void;
     onDeleteService: (state: ServicesState) => void;
@@ -96,10 +92,6 @@ export const servicesSlice = createSlice({
       action: PayloadAction<Service[]>
     ) => void;
     onUnSetActiveService: (state: ServicesState) => void;
-    onEditingService: (
-      state: ServicesState,
-      action: PayloadAction<boolean>
-    ) => void;
   },
 });
 
@@ -112,5 +104,4 @@ export const {
   onLogoutServices,
   onLoadServices,
   onUnSetActiveService,
-  onEditingService,
 } = servicesSlice.actions;

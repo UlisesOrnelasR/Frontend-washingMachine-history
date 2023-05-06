@@ -8,13 +8,12 @@ import {
   onLoadServices,
   onDeleteService,
   onUnSetActiveService,
-  onEditingService,
 } from "../store/services/servicesSlice";
 import { mock_services } from "../data/services";
 
 export const useServicesStore = (): UseServicesStoreHook => {
   const dispatch = useDispatch();
-  const { services, activeService, editingTheService } = useSelector(
+  const { services, activeService } = useSelector(
     (state: RootState) => state.services
   );
 
@@ -43,22 +42,16 @@ export const useServicesStore = (): UseServicesStoreHook => {
 
   const unSetActiveService = () => dispatch(onUnSetActiveService());
 
-  const setEditingService = (value: boolean) => {
-    dispatch(onEditingService(value));
-  };
-
   return {
     // Propiedades
     services,
     activeService,
     hasServiceSelected: !!activeService,
-    editingTheService,
     // Métodos
     setActiveService,
     savingService,
     deleteService,
     loadingServices,
     unSetActiveService,
-    setEditingService,
   };
 };
