@@ -19,6 +19,7 @@ export interface ServicesState {
   isLoadingServices: boolean;
   services: Service[];
   activeService: Service | null;
+  editingTheService: boolean;
 }
 
 export interface UseServicesStoreHook
@@ -29,4 +30,5 @@ export interface UseServicesStoreHook
   deleteService: () => void;
   loadingServices: () => void;
   unSetActiveService: () => void;
+  setEditingService: (value: boolean) => void;
 }
