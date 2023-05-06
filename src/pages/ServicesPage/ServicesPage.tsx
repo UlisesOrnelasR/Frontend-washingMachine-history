@@ -1,5 +1,4 @@
-import { Table } from "./components";
-import { ModalService } from "./components";
+import { Table, ModalService, AddButton } from "./components";
 
 export const ServicesPage = () => {
   return (
@@ -10,6 +9,7 @@ export const ServicesPage = () => {
         </h1>
         <Table />
         <ModalService />
+        <AddButton />
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 import Modal from "react-modal";
 import { IconX, IconDeviceFloppy, IconTrash } from "@tabler/icons-react";
 import { useUiStore } from "../../../hooks/useUiStore";
@@ -12,12 +14,24 @@ import "react-datepicker/dist/react-datepicker.css";
 registerLocale("es", es);
 Modal.setAppElement("#root");
 
+const user = {
+  uid: Math.random().toString(),
+  name: "Ulises",
+};
+
 export const ModalService = () => {
   const { isServiceModalOpen, closeServiceModal } = useUiStore();
-  const { activeService, savingService } = useServicesStore();
+  const {
+    setActiveService,
+    activeService,
+    savingService,
+    unSetActiveService,
+    deleteService,
+  } = useServicesStore();
   const [formSubmited, setFormSubmited] = useState(false);
 
   const [formValues, setFormValues] = useState({
+    cliente: "",
     fecha: format(new Date(), "yyyy-MM-dd"),
     marca: "",
     falla: "",
@@ -34,6 +48,21 @@ export const ModalService = () => {
     }
   }, [activeService]);
 
+  const handleCloseModal = () => {
+    closeServiceModal();
+    setFormSubmited(false);
+    setFormValues({
+      cliente: "",
+      fecha: format(new Date(), "yyyy-MM-dd"),
+      marca: "",
+      falla: "",
+      piezas_cambiadas: "",
+      costo_servicio: "",
+      domicilio: "",
+    });
+    unSetActiveService();
+  };
+
   const onDateChanged = (date: Date) => {
     setFormValues({
       ...formValues,
@@ -48,11 +77,36 @@ export const ModalService = () => {
     });
   };
 
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormSubmited(true);
+
+    // Checking that all fields are filled
+    const hasEmptyFields = Object.values(formValues).some(
+      (value) => value === ""
+    );
+    if (hasEmptyFields) {
+      Swal.fire("Campos vacíos", "Revisar los campos ingresados", "error");
+      return;
+    }
+    savingService({
+      ...formValues,
+      user,
+    });
+    handleCloseModal();
+    setFormSubmited(false);
+  };
+
+  const handleDelete = () => {
+    deleteService();
+    closeServiceModal();
+  };
+
   return (
     <Modal
       isOpen={isServiceModalOpen}
       // onAfterOpen={afterOpenModal}
-      onRequestClose={closeServiceModal}
+      onRequestClose={handleCloseModal}
       className="modal"
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
@@ -63,7 +117,7 @@ export const ModalService = () => {
           Información del servicio
         </h2>
         <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-400" />
-        <form action="">
+        <form onSubmit={onSubmit}>
           <div className="my-2 flex gap-2">
             <div className="w-full">
               <label htmlFor="fecha" className="block font-semibold mb-1">
@@ -91,18 +145,33 @@ export const ModalService = () => {
               />
             </div>
           </div>
-          <div className="my-2">
-            <label htmlFor="marca" className="block font-semibold mb-1">
-              Falla:
-            </label>
-            <input
-              name="falla"
-              type="text"
-              value={formValues.falla}
-              onChange={onInputChange}
-              className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
-            />
+          <div className="my-2 flex gap-2">
+            <div className="">
+              <label htmlFor="marca" className="block font-semibold mb-1">
+                Cliente:
+              </label>
+              <input
+                name="cliente"
+                type="text"
+                value={formValues.cliente}
+                onChange={onInputChange}
+                className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
+              />
+            </div>
+            <div className="">
+              <label htmlFor="marca" className="block font-semibold mb-1">
+                Falla:
+              </label>
+              <input
+                name="falla"
+                type="text"
+                value={formValues.falla}
+                onChange={onInputChange}
+                className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
+              />
+            </div>
           </div>
+
           <div className="my-2">
             <label htmlFor="marca" className="block font-semibold mb-1">
               Piezas cambiadas:
@@ -147,14 +216,18 @@ export const ModalService = () => {
               <IconDeviceFloppy />
               Guardar
             </button>
-            <button className="flex items-center gap-1 border border-red-600 bg-red-600 text-white py-2 px-4 hover:bg-red-800 hover:border-red-800  rounded-xl transition-colors">
+            <button
+              type="button"
+              className="flex items-center gap-1 border border-red-600 bg-red-600 text-white py-2 px-4 hover:bg-red-800 hover:border-red-800  rounded-xl transition-colors"
+              onClick={handleDelete}
+            >
               <IconTrash />
               Eliminar
             </button>
           </div>
         </form>
         <button
-          onClick={closeServiceModal}
+          onClick={handleCloseModal}
           className="absolute top-0 right-0 hover:scale-110 duration-300 transition ease-in-out"
         >
           <IconX size={25} color="red" />
