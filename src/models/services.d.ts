@@ -28,4 +28,5 @@ export interface UseServicesStoreHook
   savingService: (service: Service) => void;
   deleteService: () => void;
   loadingServices: () => void;
+  unSetActiveService: () => void;
 }

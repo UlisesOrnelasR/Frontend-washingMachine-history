@@ -7,8 +7,10 @@ import {
   onUpdateService,
   onLoadServices,
   onDeleteService,
+  onUnSetActiveService,
 } from "../store/services/servicesSlice";
 import { mock_services } from "../data/services";
+import { format } from "date-fns";
 
 export const useServicesStore = (): UseServicesStoreHook => {
   const dispatch = useDispatch();
@@ -16,15 +18,30 @@ export const useServicesStore = (): UseServicesStoreHook => {
     (state: RootState) => state.services
   );
 
-  const setActiveService = (tableService: Service) =>
+  const setActiveService = (tableService: Service) => {
     dispatch(onSetActiveService(tableService));
+  };
 
-  const savingService = (tableService: Service) =>
-    dispatch(onAddNewService(tableService));
+  const savingService = (tableService: Service) => {
+    // TODO: llegar al backend
+
+    // Todo bien
+    if (tableService.id) {
+      // Actualizando
+      dispatch(onUpdateService({ ...tableService }));
+    } else {
+      // Creando
+      dispatch(
+        onAddNewService({ ...tableService, id: Math.random().toString() })
+      );
+    }
+  };
 
   const deleteService = () => dispatch(onDeleteService());
 
   const loadingServices = () => dispatch(onLoadServices(mock_services));
+
+  const unSetActiveService = () => dispatch(onUnSetActiveService());
 
   return {
     // Propiedades
@@ -36,5 +53,6 @@ export const useServicesStore = (): UseServicesStoreHook => {
     savingService,
     deleteService,
     loadingServices,
+    unSetActiveService,
   };
 };

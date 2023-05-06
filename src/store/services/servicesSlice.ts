@@ -69,6 +69,9 @@ export const servicesSlice = createSlice({
       state.services = [];
       state.activeService = null;
     },
+    onUnSetActiveService: (state) => {
+      state.activeService = null;
+    },
   } as SliceCaseReducers<ServicesState> & {
     onLogoutServices: (state: ServicesState) => void;
     onDeleteService: (state: ServicesState) => void;
@@ -88,6 +91,7 @@ export const servicesSlice = createSlice({
       state: ServicesState,
       action: PayloadAction<Service[]>
     ) => void;
+    onUnSetActiveService: (state: ServicesState) => void;
   },
 });
 
@@ -99,4 +103,5 @@ export const {
   onDeleteService,
   onLogoutServices,
   onLoadServices,
+  onUnSetActiveService,
 } = servicesSlice.actions;
