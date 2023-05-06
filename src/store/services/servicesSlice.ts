@@ -21,11 +21,56 @@ const mockService: Service = {
   },
 };
 
+const mockService2: Service = {
+  id: "2",
+  cliente: "Erika Machain",
+  fecha: format(new Date(), "yyyy-MM-dd"),
+  marca: "Samsung",
+  falla: "Tiraba Agua",
+  piezas_cambiadas: "Transmision",
+  costo_servicio: "2500",
+  domicilio: "Calle juarez #555",
+  user: {
+    uid: "1",
+    name: "Ulises",
+  },
+};
+
+const mockService3: Service = {
+  id: "3",
+  cliente: "Angelica Martinez",
+  fecha: format(new Date(), "yyyy-MM-dd"),
+  marca: "Keemore",
+  falla: "No exprime",
+  piezas_cambiadas: "Sensor Tapa",
+  costo_servicio: "800",
+  domicilio: "Calle Zaragoza #444",
+  user: {
+    uid: "1",
+    name: "Ulises",
+  },
+};
+
+const mockService4: Service = {
+  id: "4",
+  cliente: "Hermelinda Montero",
+  fecha: format(new Date(), "yyyy-MM-dd"),
+  marca: "LG",
+  falla: "No cae agua a la tina",
+  piezas_cambiadas: "Electrovalvulas",
+  costo_servicio: "1200",
+  domicilio: "Calle Quinta del refugio #16",
+  user: {
+    uid: "1",
+    name: "Ulises",
+  },
+};
+
 export const servicesSlice = createSlice({
   name: "services",
   initialState: {
     isLoadingServices: false,
-    services: [mockService],
+    services: [mockService, mockService2, mockService3, mockService4],
     activeService: null,
   } as ServicesState,
   reducers: {
