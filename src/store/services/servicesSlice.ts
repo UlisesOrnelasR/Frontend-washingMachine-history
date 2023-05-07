@@ -24,7 +24,7 @@ const mockService: Service = {
 const mockService2: Service = {
   id: "2",
   cliente: "Erika Machain",
-  fecha: format(new Date(), "yyyy-MM-dd"),
+  fecha: format(new Date("2022-10-12"), "yyyy-MM-dd"),
   marca: "Samsung",
   falla: "Tiraba Agua",
   piezas_cambiadas: "Transmision",
@@ -39,7 +39,7 @@ const mockService2: Service = {
 const mockService3: Service = {
   id: "3",
   cliente: "Angelica Martinez",
-  fecha: format(new Date(), "yyyy-MM-dd"),
+  fecha: format(new Date("2022-05-01"), "yyyy-MM-dd"),
   marca: "Keemore",
   falla: "No exprime",
   piezas_cambiadas: "Sensor Tapa",
@@ -54,7 +54,7 @@ const mockService3: Service = {
 const mockService4: Service = {
   id: "4",
   cliente: "Hermelinda Montero",
-  fecha: format(new Date(), "yyyy-MM-dd"),
+  fecha: format(new Date("2023-02-14"), "yyyy-MM-dd"),
   marca: "LG",
   falla: "No cae agua a la tina",
   piezas_cambiadas: "Electrovalvulas",

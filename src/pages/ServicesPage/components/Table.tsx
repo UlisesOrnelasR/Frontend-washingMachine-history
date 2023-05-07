@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { format, addDays } from "date-fns";
 import { es } from "date-fns/locale";
 import { useUiStore } from "../../../hooks/useUiStore";
@@ -7,15 +8,115 @@ import { Service } from "../../../models/services";
 export const Table = () => {
   const { openServiceModal } = useUiStore();
   const { services, setActiveService } = useServicesStore();
+  const [filters, setFilters] = useState({
+    cliente: "",
+    fechaDesde: "",
+    fechaHasta: "",
+    marca: "",
+    falla: "",
+  });
+  const [filteredServices, setFilteredServices] = useState(services);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
     openServiceModal();
   };
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value.toLowerCase(),
+    }));
+  };
+
+  useEffect(() => {
+    const filtered = services.filter((service) => {
+      if (
+        filters.cliente &&
+        !service.cliente.toLowerCase().includes(filters.cliente)
+      ) {
+        return false;
+      }
+      if (
+        filters.fechaDesde &&
+        new Date(service.fecha) < new Date(filters.fechaDesde)
+      ) {
+        return false;
+      }
+      if (
+        filters.fechaHasta &&
+        new Date(service.fecha) > new Date(filters.fechaHasta)
+      ) {
+        return false;
+      }
+      if (
+        filters.marca &&
+        !service.marca.toLowerCase().includes(filters.marca)
+      ) {
+        return false;
+      }
+      if (
+        filters.falla &&
+        !service.falla.toLowerCase().includes(filters.falla)
+      ) {
+        return false;
+      }
+      return true;
+    });
+    setFilteredServices(filtered);
+  }, [services, filters]);
+
   return (
     <>
       <div className="overflow-x-auto">
+        <div className="">
+          <div className="flex flex-wrap gap-3 mb-4">
+            <input
+              type="text"
+              name="cliente"
+              value={filters.cliente}
+              onChange={handleFilterChange}
+              placeholder="Cliente"
+              className="w-32 px-3 py-1 border rounded-md outline-none"
+            />
+            <div className="flex gap-3">
+              <input
+                type="date"
+                name="fechaDesde"
+                value={filters.fechaDesde}
+                onChange={handleFilterChange}
+                placeholder="Desde"
+                className="w-32 px-3 py-1 border rounded-md outline-none"
+              />
+              <input
+                type="date"
+                name="fechaHasta"
+                value={filters.fechaHasta}
+                onChange={handleFilterChange}
+                placeholder="Hasta"
+                className="w-32 px-3 py-1 border rounded-md outline-none"
+              />
+            </div>
+            <input
+              type="text"
+              name="marca"
+              value={filters.marca}
+              onChange={handleFilterChange}
+              placeholder="Marca"
+              className="w-32 px-3 py-1 border rounded-md outline-none"
+            />
+            <input
+              type="text"
+              name="falla"
+              value={filters.falla}
+              onChange={handleFilterChange}
+              placeholder="Falla"
+              className="w-32 px-3 py-1 border rounded-md outline-none"
+            />
+          </div>
+        </div>
+
         <table className="w-full divide-y-2 divide-gray-200 text-sm">
           <thead className="text-left ">
             <tr>
@@ -45,7 +146,7 @@ export const Table = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {services.map((service) => (
+            {filteredServices.map((service) => (
               <tr key={service.id}>
                 <td className="whitespace-nowrap px-4 py-2 font-bold text-text">
                   {service.cliente}
