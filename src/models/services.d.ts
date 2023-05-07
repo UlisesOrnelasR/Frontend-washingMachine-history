@@ -10,7 +10,7 @@ export interface Service {
   marca: string;
   falla: string;
   piezas_cambiadas: string;
-  costo_servicio: string;
+  costo_servicio: number;
   domicilio: string;
   user: User;
 }

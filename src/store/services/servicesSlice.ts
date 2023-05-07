@@ -13,7 +13,7 @@ const mockService: Service = {
   marca: "Whirpool",
   falla: "Golpeaba la tina",
   piezas_cambiadas: "amortiguadores",
-  costo_servicio: "400",
+  costo_servicio: 300,
   domicilio: "Calle 123",
   user: {
     uid: "1",
@@ -28,7 +28,7 @@ const mockService2: Service = {
   marca: "Samsung",
   falla: "Tiraba Agua",
   piezas_cambiadas: "Transmision",
-  costo_servicio: "2500",
+  costo_servicio: 2500,
   domicilio: "Calle juarez #555",
   user: {
     uid: "1",
@@ -43,7 +43,7 @@ const mockService3: Service = {
   marca: "Keemore",
   falla: "No exprime",
   piezas_cambiadas: "Sensor Tapa",
-  costo_servicio: "800",
+  costo_servicio: 800,
   domicilio: "Calle Zaragoza #444",
   user: {
     uid: "1",
@@ -58,7 +58,7 @@ const mockService4: Service = {
   marca: "LG",
   falla: "No cae agua a la tina",
   piezas_cambiadas: "Electrovalvulas",
-  costo_servicio: "1200",
+  costo_servicio: 1200,
   domicilio: "Calle Quinta del refugio #16",
   user: {
     uid: "1",

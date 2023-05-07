@@ -36,7 +36,7 @@ export const ModalService = () => {
     marca: "",
     falla: "",
     piezas_cambiadas: "",
-    costo_servicio: "",
+    costo_servicio: 0,
     domicilio: "",
   });
 
@@ -57,7 +57,7 @@ export const ModalService = () => {
       marca: "",
       falla: "",
       piezas_cambiadas: "",
-      costo_servicio: "",
+      costo_servicio: 0,
       domicilio: "",
     });
     unSetActiveService();
@@ -190,7 +190,8 @@ export const ModalService = () => {
             </label>
             <input
               name="costo_servicio"
-              type="text"
+              type="number"
+              min={0}
               value={formValues.costo_servicio}
               onChange={onInputChange}
               className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"

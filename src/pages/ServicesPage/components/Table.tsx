@@ -4,6 +4,7 @@ import { es } from "date-fns/locale";
 import { useUiStore } from "../../../hooks/useUiStore";
 import { useServicesStore } from "../../../hooks/useServicesStore";
 import { Service } from "../../../models/services";
+import { formatterMoney } from "../../../utils";
 
 export const Table = () => {
   const { openServiceModal } = useUiStore();
@@ -170,7 +171,7 @@ export const Table = () => {
                   {service.piezas_cambiadas}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {service.costo_servicio}
+                  {formatterMoney(service.costo_servicio)}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
                   {service.domicilio}
