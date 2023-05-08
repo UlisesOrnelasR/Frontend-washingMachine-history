@@ -5,6 +5,7 @@ import { useUiStore } from "../../../hooks/useUiStore";
 import { useServicesStore } from "../../../hooks/useServicesStore";
 import { Service } from "../../../models/services";
 import { formatterMoney } from "../../../utils";
+import { Pagination } from "../../../components/Pagination";
 
 export const Table = () => {
   const { openServiceModal } = useUiStore();
@@ -17,6 +18,8 @@ export const Table = () => {
     falla: "",
   });
   const [filteredServices, setFilteredServices] = useState(services);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [servicesPerPage, setServicesPerPage] = useState(1);
 
   const handleServiceClick = (service: Service) => {
     setActiveService(service);
@@ -29,6 +32,7 @@ export const Table = () => {
       ...prevFilters,
       [name]: value.toLowerCase(),
     }));
+    setCurrentPage(1);
   };
 
   useEffect(() => {
@@ -67,6 +71,22 @@ export const Table = () => {
     });
     setFilteredServices(filtered);
   }, [services, filters]);
+
+  const indexOfLastService = currentPage * servicesPerPage;
+  const indexOfFirstService = indexOfLastService - servicesPerPage;
+  const currentServices = filteredServices.slice(
+    indexOfFirstService,
+    indexOfLastService
+  );
+
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(filteredServices.length / servicesPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
 
   return (
     <>
@@ -147,7 +167,7 @@ export const Table = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {filteredServices.map((service) => (
+            {currentServices.map((service) => (
               <tr key={service.id}>
                 <td className="whitespace-nowrap px-4 py-2 font-bold text-text">
                   {service.cliente}
@@ -188,6 +208,13 @@ export const Table = () => {
             ))}
           </tbody>
         </table>
+
+        <Pagination
+          currentPage={currentPage}
+          servicesPerPage={servicesPerPage}
+          totalServices={filteredServices.length}
+          paginate={(pageNumber) => setCurrentPage(pageNumber)}
+        />
       </div>
     </>
   );
