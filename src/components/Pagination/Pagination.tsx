@@ -1,4 +1,9 @@
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconChevronsRight,
+  IconChevronsLeft,
+} from "@tabler/icons-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -23,6 +28,15 @@ export const Pagination = ({
 
   return (
     <div className="flex justify-center space-x-2 ">
+      <button
+        onClick={() => paginate(1)}
+        disabled={!canGoBack}
+        className={`px-3 py-1 rounded-md text-indigo-600 ${
+          !canGoBack ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+      >
+        <IconChevronsLeft size={20} />
+      </button>
       <button
         onClick={() => paginate(currentPage - 1)}
         disabled={!canGoBack}
@@ -51,6 +65,15 @@ export const Pagination = ({
         }`}
       >
         <IconChevronRight size={20} />
+      </button>
+      <button
+        onClick={() => paginate(pageNumbers.length)}
+        disabled={!canGoForward}
+        className={`px-3 py-1 rounded-md text-indigo-600 ${
+          !canGoForward ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+      >
+        <IconChevronsRight size={20} />
       </button>
     </div>
   );
