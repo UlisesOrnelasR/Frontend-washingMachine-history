@@ -27,11 +27,11 @@ export const Pagination = ({
   const canGoForward = currentPage < pageNumbers.length;
 
   return (
-    <div className="flex justify-center space-x-2 ">
+    <div className="flex justify-center ">
       <button
         onClick={() => paginate(1)}
         disabled={!canGoBack}
-        className={`px-3 py-1 rounded-md text-indigo-600 ${
+        className={`px-2 py-1 rounded-md text-indigo-600 ${
           !canGoBack ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
@@ -40,27 +40,21 @@ export const Pagination = ({
       <button
         onClick={() => paginate(currentPage - 1)}
         disabled={!canGoBack}
-        className={`px-3 py-1 rounded-md text-indigo-600 ${
+        className={`px-2 py-1 rounded-md text-indigo-600 ${
           !canGoBack ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
         <IconChevronLeft size={20} />
       </button>
-      {pageNumbers.map((pageNumber) => (
-        <button
-          key={pageNumber}
-          onClick={() => paginate(pageNumber)}
-          className={`px-3 py-1 rounded-xl ${
-            pageNumber === currentPage ? "bg-indigo-600 text-white" : "bg-white"
-          }`}
-        >
-          {pageNumber}
-        </button>
-      ))}
+      <button
+        className={`mx-2 px-3 py-1 rounded-xl ${"bg-indigo-600 text-white"}`}
+      >
+        {currentPage}
+      </button>
       <button
         onClick={() => paginate(currentPage + 1)}
         disabled={!canGoForward}
-        className={`px-3 py-1 rounded-md text-indigo-600 ${
+        className={`px-2 py-1 rounded-md text-indigo-600 ${
           !canGoForward ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
@@ -69,7 +63,7 @@ export const Pagination = ({
       <button
         onClick={() => paginate(pageNumbers.length)}
         disabled={!canGoForward}
-        className={`px-3 py-1 rounded-md text-indigo-600 ${
+        className={`px-2 py-1 rounded-md text-indigo-600 ${
           !canGoForward ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
