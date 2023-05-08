@@ -1,3 +1,5 @@
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+
 interface PaginationProps {
   currentPage: number;
   servicesPerPage: number;
@@ -20,22 +22,22 @@ export const Pagination = ({
   const canGoForward = currentPage < pageNumbers.length;
 
   return (
-    <div className="flex justify-center space-x-2">
+    <div className="flex justify-center space-x-2 ">
       <button
         onClick={() => paginate(currentPage - 1)}
         disabled={!canGoBack}
-        className={`px-3 py-1 rounded-md ${
+        className={`px-3 py-1 rounded-md text-indigo-600 ${
           !canGoBack ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
-        Anterior
+        <IconChevronLeft size={20} />
       </button>
       {pageNumbers.map((pageNumber) => (
         <button
           key={pageNumber}
           onClick={() => paginate(pageNumber)}
-          className={`px-3 py-1 rounded-md ${
-            pageNumber === currentPage ? "bg-blue-500 text-white" : "bg-white"
+          className={`px-3 py-1 rounded-xl ${
+            pageNumber === currentPage ? "bg-indigo-600 text-white" : "bg-white"
           }`}
         >
           {pageNumber}
@@ -44,11 +46,11 @@ export const Pagination = ({
       <button
         onClick={() => paginate(currentPage + 1)}
         disabled={!canGoForward}
-        className={`px-3 py-1 rounded-md ${
+        className={`px-3 py-1 rounded-md text-indigo-600 ${
           !canGoForward ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
-        Siguiente
+        <IconChevronRight size={20} />
       </button>
     </div>
   );

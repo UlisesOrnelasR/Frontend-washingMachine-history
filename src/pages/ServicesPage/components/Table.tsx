@@ -90,54 +90,53 @@ export const Table = () => {
 
   return (
     <>
-      <div className="overflow-x-auto">
-        <div className="">
-          <div className="flex flex-wrap gap-3 mb-4">
+      <div className="">
+        <div className="flex flex-wrap gap-3 mb-4">
+          <input
+            type="text"
+            name="cliente"
+            value={filters.cliente}
+            onChange={handleFilterChange}
+            placeholder="Cliente"
+            className="w-32 px-3 py-1 border rounded-md outline-none"
+          />
+          <div className="flex gap-3">
             <input
-              type="text"
-              name="cliente"
-              value={filters.cliente}
+              type="date"
+              name="fechaDesde"
+              value={filters.fechaDesde}
               onChange={handleFilterChange}
-              placeholder="Cliente"
-              className="w-32 px-3 py-1 border rounded-md outline-none"
-            />
-            <div className="flex gap-3">
-              <input
-                type="date"
-                name="fechaDesde"
-                value={filters.fechaDesde}
-                onChange={handleFilterChange}
-                placeholder="Desde"
-                className="w-32 px-3 py-1 border rounded-md outline-none"
-              />
-              <input
-                type="date"
-                name="fechaHasta"
-                value={filters.fechaHasta}
-                onChange={handleFilterChange}
-                placeholder="Hasta"
-                className="w-32 px-3 py-1 border rounded-md outline-none"
-              />
-            </div>
-            <input
-              type="text"
-              name="marca"
-              value={filters.marca}
-              onChange={handleFilterChange}
-              placeholder="Marca"
+              placeholder="Desde"
               className="w-32 px-3 py-1 border rounded-md outline-none"
             />
             <input
-              type="text"
-              name="falla"
-              value={filters.falla}
+              type="date"
+              name="fechaHasta"
+              value={filters.fechaHasta}
               onChange={handleFilterChange}
-              placeholder="Falla"
+              placeholder="Hasta"
               className="w-32 px-3 py-1 border rounded-md outline-none"
             />
           </div>
+          <input
+            type="text"
+            name="marca"
+            value={filters.marca}
+            onChange={handleFilterChange}
+            placeholder="Marca"
+            className="w-32 px-3 py-1 border rounded-md outline-none"
+          />
+          <input
+            type="text"
+            name="falla"
+            value={filters.falla}
+            onChange={handleFilterChange}
+            placeholder="Falla"
+            className="w-32 px-3 py-1 border rounded-md outline-none"
+          />
         </div>
-
+      </div>
+      <div className="overflow-x-auto">
         <table className="w-full divide-y-2 divide-gray-200 text-sm">
           <thead className="text-left ">
             <tr>
@@ -208,14 +207,13 @@ export const Table = () => {
             ))}
           </tbody>
         </table>
-
-        <Pagination
-          currentPage={currentPage}
-          servicesPerPage={servicesPerPage}
-          totalServices={filteredServices.length}
-          paginate={(pageNumber) => setCurrentPage(pageNumber)}
-        />
       </div>
+      <Pagination
+        currentPage={currentPage}
+        servicesPerPage={servicesPerPage}
+        totalServices={filteredServices.length}
+        paginate={(pageNumber) => setCurrentPage(pageNumber)}
+      />
     </>
   );
 };
