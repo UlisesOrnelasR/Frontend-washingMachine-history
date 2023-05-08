@@ -5,13 +5,13 @@ export interface User {
 
 export interface Service {
   id?: string;
-  cliente: string;
-  fecha: string;
-  marca: string;
-  falla: string;
-  piezas_cambiadas: string;
-  costo_servicio: number;
-  domicilio: string;
+  customer: string;
+  date: string;
+  brand: string;
+  fault: string;
+  changed_parts: string;
+  service_cost: number;
+  address: string;
   user: User;
 }
 

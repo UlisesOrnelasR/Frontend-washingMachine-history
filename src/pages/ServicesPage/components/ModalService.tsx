@@ -31,13 +31,13 @@ export const ModalService = () => {
   const [formSubmited, setFormSubmited] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    cliente: "",
-    fecha: format(new Date(), "yyyy-MM-dd"),
-    marca: "",
-    falla: "",
-    piezas_cambiadas: "",
-    costo_servicio: 0,
-    domicilio: "",
+    customer: "",
+    date: format(new Date(), "yyyy-MM-dd"),
+    brand: "",
+    fault: "",
+    changed_parts: "",
+    service_cost: 0,
+    address: "",
   });
 
   useEffect(() => {
@@ -52,13 +52,13 @@ export const ModalService = () => {
     closeServiceModal();
     setFormSubmited(false);
     setFormValues({
-      cliente: "",
-      fecha: format(new Date(), "yyyy-MM-dd"),
-      marca: "",
-      falla: "",
-      piezas_cambiadas: "",
-      costo_servicio: 0,
-      domicilio: "",
+      customer: "",
+      date: format(new Date(), "yyyy-MM-dd"),
+      brand: "",
+      fault: "",
+      changed_parts: "",
+      service_cost: 0,
+      address: "",
     });
     unSetActiveService();
   };
@@ -66,7 +66,7 @@ export const ModalService = () => {
   const onDateChanged = (date: Date) => {
     setFormValues({
       ...formValues,
-      fecha: format(date, "yyyy-MM-dd"),
+      date: format(date, "yyyy-MM-dd"),
     });
   };
 
@@ -127,7 +127,7 @@ export const ModalService = () => {
                 id="fecha"
                 locale="es"
                 dateFormat="MMMM d, yyyy"
-                selected={parseISO(formValues.fecha)}
+                selected={parseISO(formValues.date)}
                 onChange={(date: Date) => onDateChanged(date)}
                 className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
               />
@@ -137,9 +137,9 @@ export const ModalService = () => {
                 Marca:
               </label>
               <input
-                name="marca"
+                name="brand"
                 type="text"
-                value={formValues.marca}
+                value={formValues.brand}
                 onChange={onInputChange}
                 className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
               />
@@ -151,9 +151,9 @@ export const ModalService = () => {
                 Cliente:
               </label>
               <input
-                name="cliente"
+                name="customer"
                 type="text"
-                value={formValues.cliente}
+                value={formValues.customer}
                 onChange={onInputChange}
                 className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
               />
@@ -163,9 +163,9 @@ export const ModalService = () => {
                 Falla:
               </label>
               <input
-                name="falla"
+                name="fault"
                 type="text"
-                value={formValues.falla}
+                value={formValues.fault}
                 onChange={onInputChange}
                 className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
               />
@@ -177,9 +177,9 @@ export const ModalService = () => {
               Piezas cambiadas:
             </label>
             <input
-              name="piezas_cambiadas"
+              name="changed_parts"
               type="text"
-              value={formValues.piezas_cambiadas}
+              value={formValues.changed_parts}
               onChange={onInputChange}
               className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
             />
@@ -189,10 +189,10 @@ export const ModalService = () => {
               Costo del servicio:
             </label>
             <input
-              name="costo_servicio"
+              name="service_cost"
               type="number"
               min={0}
-              value={formValues.costo_servicio}
+              value={formValues.service_cost}
               onChange={onInputChange}
               className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
             />
@@ -202,9 +202,9 @@ export const ModalService = () => {
               Domicilio:
             </label>
             <input
-              name="domicilio"
+              name="address"
               type="text"
-              value={formValues.domicilio}
+              value={formValues.address}
               onChange={onInputChange}
               className="w-full py-2 px-3 rounded-xl outline-none text-dark bg-gray-300 text-sm"
             />

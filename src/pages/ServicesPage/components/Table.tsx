@@ -11,11 +11,11 @@ export const Table = () => {
   const { openServiceModal } = useUiStore();
   const { services, setActiveService } = useServicesStore();
   const [filters, setFilters] = useState({
-    cliente: "",
-    fechaDesde: "",
-    fechaHasta: "",
-    marca: "",
-    falla: "",
+    customer: "",
+    dateFrom: "",
+    dateTo: "",
+    brand: "",
+    fault: "",
   });
   const [filteredServices, setFilteredServices] = useState(services);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,32 +38,29 @@ export const Table = () => {
   useEffect(() => {
     const filtered = services.filter((service) => {
       if (
-        filters.cliente &&
-        !service.cliente.toLowerCase().includes(filters.cliente)
+        filters.customer &&
+        !service.customer.toLowerCase().includes(filters.customer)
       ) {
         return false;
       }
       if (
-        filters.fechaDesde &&
-        new Date(service.fecha) < new Date(filters.fechaDesde)
+        filters.dateFrom &&
+        new Date(service.date) < new Date(filters.dateFrom)
+      ) {
+        return false;
+      }
+      if (filters.dateTo && new Date(service.date) > new Date(filters.dateTo)) {
+        return false;
+      }
+      if (
+        filters.brand &&
+        !service.brand.toLowerCase().includes(filters.brand)
       ) {
         return false;
       }
       if (
-        filters.fechaHasta &&
-        new Date(service.fecha) > new Date(filters.fechaHasta)
-      ) {
-        return false;
-      }
-      if (
-        filters.marca &&
-        !service.marca.toLowerCase().includes(filters.marca)
-      ) {
-        return false;
-      }
-      if (
-        filters.falla &&
-        !service.falla.toLowerCase().includes(filters.falla)
+        filters.fault &&
+        !service.fault.toLowerCase().includes(filters.fault)
       ) {
         return false;
       }
@@ -95,7 +92,7 @@ export const Table = () => {
           <input
             type="text"
             name="cliente"
-            value={filters.cliente}
+            value={filters.customer}
             onChange={handleFilterChange}
             placeholder="Cliente"
             className="w-32 px-3 py-1 border rounded-md outline-none"
@@ -104,7 +101,7 @@ export const Table = () => {
             <input
               type="date"
               name="fechaDesde"
-              value={filters.fechaDesde}
+              value={filters.dateFrom}
               onChange={handleFilterChange}
               placeholder="Desde"
               className="w-32 px-3 py-1 border rounded-md outline-none"
@@ -112,7 +109,7 @@ export const Table = () => {
             <input
               type="date"
               name="fechaHasta"
-              value={filters.fechaHasta}
+              value={filters.dateTo}
               onChange={handleFilterChange}
               placeholder="Hasta"
               className="w-32 px-3 py-1 border rounded-md outline-none"
@@ -121,7 +118,7 @@ export const Table = () => {
           <input
             type="text"
             name="marca"
-            value={filters.marca}
+            value={filters.brand}
             onChange={handleFilterChange}
             placeholder="Marca"
             className="w-32 px-3 py-1 border rounded-md outline-none"
@@ -129,7 +126,7 @@ export const Table = () => {
           <input
             type="text"
             name="falla"
-            value={filters.falla}
+            value={filters.fault}
             onChange={handleFilterChange}
             placeholder="Falla"
             className="w-32 px-3 py-1 border rounded-md outline-none"
@@ -169,11 +166,11 @@ export const Table = () => {
             {currentServices.map((service) => (
               <tr key={service.id}>
                 <td className="whitespace-nowrap px-4 py-2 font-bold text-text">
-                  {service.cliente}
+                  {service.customer}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
                   {format(
-                    addDays(new Date(service.fecha), 1),
+                    addDays(new Date(service.date), 1),
                     "do 'de' MMMM yyyy",
                     {
                       locale: es,
@@ -181,19 +178,19 @@ export const Table = () => {
                   )}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {service.marca}
+                  {service.brand}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {service.falla}
+                  {service.fault}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text max-w-sm overflow-x-auto">
-                  {service.piezas_cambiadas}
+                  {service.changed_parts}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {formatterMoney(service.costo_servicio)}
+                  {formatterMoney(service.service_cost)}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-text">
-                  {service.domicilio}
+                  {service.address}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2">
                   <p

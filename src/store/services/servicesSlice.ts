@@ -8,13 +8,13 @@ import { format } from "date-fns";
 
 const mockService: Service = {
   id: "1",
-  cliente: "Juan Gonzales",
-  fecha: format(new Date(), "yyyy-MM-dd"),
-  marca: "Whirpool",
-  falla: "Golpeaba la tina",
-  piezas_cambiadas: "amortiguadores",
-  costo_servicio: 300,
-  domicilio: "Calle 123",
+  customer: "Juan Gonzales",
+  date: format(new Date(), "yyyy-MM-dd"),
+  brand: "Whirpool",
+  fault: "Golpeaba la tina",
+  changed_parts: "amortiguadores",
+  service_cost: 300,
+  address: "Calle 123",
   user: {
     uid: "1",
     name: "Ulises",
@@ -23,13 +23,13 @@ const mockService: Service = {
 
 const mockService2: Service = {
   id: "2",
-  cliente: "Erika Machain",
-  fecha: format(new Date("2022-10-12"), "yyyy-MM-dd"),
-  marca: "Samsung",
-  falla: "Tiraba Agua",
-  piezas_cambiadas: "Transmision",
-  costo_servicio: 2500,
-  domicilio: "Calle juarez #555",
+  customer: "Erika Machain",
+  date: format(new Date("2022-10-12"), "yyyy-MM-dd"),
+  brand: "Samsung",
+  fault: "Tiraba Agua",
+  changed_parts: "Transmision",
+  service_cost: 2500,
+  address: "Calle juarez #555",
   user: {
     uid: "1",
     name: "Ulises",
@@ -38,13 +38,13 @@ const mockService2: Service = {
 
 const mockService3: Service = {
   id: "3",
-  cliente: "Angelica Martinez",
-  fecha: format(new Date("2022-05-01"), "yyyy-MM-dd"),
-  marca: "Keemore",
-  falla: "No exprime",
-  piezas_cambiadas: "Sensor Tapa",
-  costo_servicio: 800,
-  domicilio: "Calle Zaragoza #444",
+  customer: "Angelica Martinez",
+  date: format(new Date("2022-05-01"), "yyyy-MM-dd"),
+  brand: "Keemore",
+  fault: "No exprime",
+  changed_parts: "Sensor Tapa",
+  service_cost: 800,
+  address: "Calle Zaragoza #444",
   user: {
     uid: "1",
     name: "Ulises",
@@ -53,13 +53,13 @@ const mockService3: Service = {
 
 const mockService4: Service = {
   id: "4",
-  cliente: "Hermelinda Montero",
-  fecha: format(new Date("2023-02-14"), "yyyy-MM-dd"),
-  marca: "LG",
-  falla: "No cae agua a la tina",
-  piezas_cambiadas: "Electrovalvulas",
-  costo_servicio: 1200,
-  domicilio: "Calle Quinta del refugio #16",
+  customer: "Hermelinda Montero",
+  date: format(new Date("2023-02-14"), "yyyy-MM-dd"),
+  brand: "LG",
+  fault: "No cae agua a la tina",
+  changed_parts: "Electrovalvulas",
+  service_cost: 1200,
+  address: "Calle Quinta del refugio #16",
   user: {
     uid: "1",
     name: "Ulises",
