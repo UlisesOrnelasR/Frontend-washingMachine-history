@@ -8,3 +8,5 @@ export interface AuthStates {
   user: {};
   errorMessage: string | undefined;
 }
+
+export interface UseAuthStoreHook extends AuthStates {}
