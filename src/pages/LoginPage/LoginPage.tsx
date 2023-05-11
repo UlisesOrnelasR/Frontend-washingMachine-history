@@ -1,6 +1,9 @@
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 import logo from "/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 type FormValues = {
   loginEmail: string;
@@ -29,14 +32,29 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 export const LoginPage = () => {
+  const { startLogin, errorMessage } = useAuthStore();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver });
-  const onSubmit: SubmitHandler<FormValues> = ({ loginEmail, loginPassword }) =>
+  const onSubmit: SubmitHandler<FormValues> = ({
+    loginEmail,
+    loginPassword,
+  }) => {
     console.log(loginEmail, loginPassword);
+    startLogin({
+      email: loginEmail,
+      password: loginPassword,
+    });
+  };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire("Authentication failed", errorMessage, "error");
+    }
+  }, [errorMessage]);
 
   return (
     <div className="bg-dark flex flex-col min-h-screen md:p-8">
