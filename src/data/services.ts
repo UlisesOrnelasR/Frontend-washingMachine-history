@@ -6,7 +6,7 @@ export const mock_services = [
     brand: "Whirpool",
     fault: "Golpeaba la tina",
     changed_parts: "amortiguadores",
-    service_cost: "400",
+    service_cost: 400,
     address: "Calle 123",
     user: {
       uid: "1",
@@ -20,7 +20,7 @@ export const mock_services = [
     brand: "GE",
     fault: "Tiraba agua",
     changed_parts: "Bomba de agua",
-    service_cost: "700",
+    service_cost: 700,
     address: "Calle 456",
     user: {
       uid: "1",

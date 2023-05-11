@@ -1,8 +1,3 @@
-export interface User {
-  uid: string;
-  name: string;
-}
-
 export interface Service {
   id?: string;
   customer: string;
