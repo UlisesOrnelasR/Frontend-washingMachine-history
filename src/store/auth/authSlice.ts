@@ -34,7 +34,10 @@ export const authSlice = createSlice({
   } as SliceCaseReducers<AuthStates> & {
     onCheckLogin: (state: AuthStates) => void;
     onLogin: (state: AuthStates, action: PayloadAction<User>) => void;
-    onLogout: (state: AuthStates, action: PayloadAction<string>) => void;
+    onLogout: (
+      state: AuthStates,
+      action: PayloadAction<string | undefined>
+    ) => void;
     clearErrorMessage: (state: AuthStates) => void;
   },
 });
