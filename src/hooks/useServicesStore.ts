@@ -38,7 +38,27 @@ export const useServicesStore = (): UseServicesStoreHook => {
     }
   };
 
-  const deleteService = () => dispatch(onDeleteService());
+  const deleteService = async () => {
+    try {
+      if (!activeService) {
+        Swal.fire({
+          title: "Error",
+          text: "No se ha seleccionado ningún servicio",
+          icon: "error",
+        });
+        throw new Error("No se ha seleccionado ningún servicio");
+      }
+      await wmApi.delete(`/services/${activeService.id}`);
+      dispatch(onDeleteService());
+    } catch (error: any) {
+      Swal.fire({
+        title: "Error",
+        text: error.response.data.msg || "Error al eliminar el servicio",
+        icon: "error",
+      });
+      console.log(error);
+    }
+  };
 
   const loadingServices = async () => {
     try {

@@ -27,6 +27,7 @@ export const ModalService = () => {
     savingService,
     unSetActiveService,
     deleteService,
+    hasServiceSelected,
   } = useServicesStore();
   const [formSubmited, setFormSubmited] = useState(false);
 
@@ -217,14 +218,16 @@ export const ModalService = () => {
               <IconDeviceFloppy />
               Guardar
             </button>
-            <button
-              type="button"
-              className="flex items-center gap-1 border border-red-600 bg-red-600 text-white py-2 px-4 hover:bg-red-800 hover:border-red-800  rounded-xl transition-colors"
-              onClick={handleDelete}
-            >
-              <IconTrash />
-              Eliminar
-            </button>
+            {hasServiceSelected && (
+              <button
+                type="button"
+                className="flex items-center gap-1 border border-red-600 bg-red-600 text-white py-2 px-4 hover:bg-red-800 hover:border-red-800  rounded-xl transition-colors"
+                onClick={handleDelete}
+              >
+                <IconTrash />
+                Eliminar
+              </button>
+            )}
           </div>
         </form>
         <button
