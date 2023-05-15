@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import logo from "/images/logo.png";
 import Swal from "sweetalert2";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 type FormValues = {
   registerName: string;
@@ -56,6 +57,8 @@ const resolver: Resolver<FormValues> = async (values) => {
 export const RegisterPage = () => {
   const navigate = useNavigate();
 
+  const { startRegister } = useAuthStore();
+
   const {
     register,
     handleSubmit,
@@ -72,11 +75,13 @@ export const RegisterPage = () => {
       Swal.fire("Error", "Passwords do not match", "error");
       return;
     }
-    console.log(registerEmail);
-    console.log(registerName);
-    console.log(registerLastName);
-    console.log(registerPassword);
-    console.log(registerPassword2);
+
+    startRegister({
+      name: registerName,
+      lastName: registerLastName,
+      email: registerEmail,
+      password: registerPassword,
+    });
   };
 
   return (

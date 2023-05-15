@@ -40,6 +40,38 @@ export const useAuthStore = () => {
     }
   };
 
+  const startRegister = async ({
+    email,
+    password,
+    name,
+    lastName,
+  }: {
+    email: string;
+    password: string;
+    name: string;
+    lastName: string;
+  }) => {
+    dispatch(onCheckLogin());
+    try {
+      const response = wmApi.post("/auth/register", {
+        email,
+        password,
+        name,
+        lastName,
+      });
+      const { data } = await response;
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("token-init-date", new Date().getTime().toString());
+      dispatch(onLogin({ name: data.name, uid: data.uid }));
+      navigate("/");
+    } catch (error: any) {
+      dispatch(onLogout(error.response.data?.msg || "---"));
+      setTimeout(() => {
+        dispatch(clearErrorMessage());
+      }, 10);
+    }
+  };
+
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) return dispatch(onLogout());
@@ -72,6 +104,7 @@ export const useAuthStore = () => {
 
     //* Métodos
     startLogin,
+    startRegister,
     checkAuthToken,
     startLogout,
   };

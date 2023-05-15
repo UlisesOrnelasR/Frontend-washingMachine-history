@@ -89,7 +89,7 @@ export const LoginPage = () => {
                   required: true,
                   pattern: /^\S+@\S+$/i,
                 })}
-                autoComplete="off"
+                // autoComplete="off"
                 className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.loginEmail && "outline-red-500"
                 }`}
@@ -102,7 +102,7 @@ export const LoginPage = () => {
                 {...register("loginPassword", {
                   required: true,
                 })}
-                autoComplete="off"
+                // autoComplete="off"
                 className={`w-full lg:w-4/5 py-3 px-4 rounded-xl outline-none bg-black text-gray-100 group ${
                   errors?.loginPassword && "outline-red-500"
                 }`}
