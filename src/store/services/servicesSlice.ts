@@ -70,7 +70,7 @@ export const servicesSlice = createSlice({
   name: "services",
   initialState: {
     isLoadingServices: false,
-    services: [mockService, mockService2, mockService3, mockService4],
+    services: [],
     activeService: null,
   } as ServicesState,
   reducers: {

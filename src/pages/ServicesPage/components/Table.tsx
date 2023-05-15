@@ -9,7 +9,7 @@ import { Pagination } from "../../../components/Pagination";
 
 export const Table = () => {
   const { openServiceModal } = useUiStore();
-  const { services, setActiveService } = useServicesStore();
+  const { services, setActiveService, loadingServices } = useServicesStore();
   const [filters, setFilters] = useState({
     customer: "",
     dateFrom: "",
@@ -34,6 +34,10 @@ export const Table = () => {
     }));
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    loadingServices();
+  }, []);
 
   useEffect(() => {
     const filtered = services.filter((service) => {

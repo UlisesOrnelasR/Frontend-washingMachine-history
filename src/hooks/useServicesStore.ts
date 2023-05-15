@@ -10,6 +10,8 @@ import {
   onUnSetActiveService,
 } from "../store/services/servicesSlice";
 import { mock_services } from "../data/services";
+import Swal from "sweetalert2";
+import { wmApi } from "../api";
 
 export const useServicesStore = (): UseServicesStoreHook => {
   const dispatch = useDispatch();
@@ -38,7 +40,21 @@ export const useServicesStore = (): UseServicesStoreHook => {
 
   const deleteService = () => dispatch(onDeleteService());
 
-  const loadingServices = () => dispatch(onLoadServices(mock_services));
+  const loadingServices = async () => {
+    try {
+      const response = wmApi.get("/services");
+      const { data } = await response;
+      console.log(data);
+      dispatch(onLoadServices(data.services));
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "Error al cargar los servicios",
+        icon: "error",
+      });
+      console.log(error);
+    }
+  };
 
   const unSetActiveService = () => dispatch(onUnSetActiveService());
 
