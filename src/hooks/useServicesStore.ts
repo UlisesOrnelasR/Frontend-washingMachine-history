@@ -18,22 +18,42 @@ export const useServicesStore = (): UseServicesStoreHook => {
   const { services, activeService } = useSelector(
     (state: RootState) => state.services
   );
+  const { user } = useSelector((state: RootState) => state.auth);
 
   const setActiveService = (tableService: Service) => {
     dispatch(onSetActiveService(tableService));
   };
 
-  const savingService = (tableService: Service) => {
-    // TODO: llegar al backend
-
-    // Todo bien
-    if (tableService.id) {
-      // Actualizando
-      dispatch(onUpdateService({ ...tableService }));
-    } else {
-      // Creando
+  const savingService = async (tableService: Service) => {
+    try {
+      // Todo bien
+      if (tableService.id) {
+        // Actualizando
+        await wmApi.put(`/services/${tableService.id}`, tableService);
+        dispatch(onUpdateService({ ...tableService }));
+        Swal.fire(
+          "Servicio actualizado",
+          "El servicio ha sido actualizado",
+          "success"
+        );
+        return;
+      }
+      //creando un nuevo evento
+      const { data } = await wmApi.post("/services", tableService);
+      console.log(data);
       dispatch(
-        onAddNewService({ ...tableService, id: Math.random().toString() })
+        onAddNewService({
+          ...tableService,
+          id: data.service.id,
+        })
+      );
+      Swal.fire("Servicio guardado", "El servicio ha sido guardado", "success");
+    } catch (error: any) {
+      console.log(error);
+      Swal.fire(
+        "Error on save event",
+        "No se pudo guardar el servicio",
+        "error"
       );
     }
   };

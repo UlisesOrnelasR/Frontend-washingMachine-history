@@ -1,3 +1,5 @@
+import { User } from "./auth";
+
 export interface Service {
   id?: string;
   customer: string;
