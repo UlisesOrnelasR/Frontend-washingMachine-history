@@ -22,7 +22,6 @@ const user = {
 export const ModalService = () => {
   const { isServiceModalOpen, closeServiceModal } = useUiStore();
   const {
-    setActiveService,
     activeService,
     savingService,
     unSetActiveService,
