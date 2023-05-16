@@ -95,7 +95,7 @@ export const Table = () => {
         <div className="flex flex-wrap gap-3 mb-4">
           <input
             type="text"
-            name="cliente"
+            name="customer"
             value={filters.customer}
             onChange={handleFilterChange}
             placeholder="Cliente"
@@ -104,7 +104,7 @@ export const Table = () => {
           <div className="flex gap-3">
             <input
               type="date"
-              name="fechaDesde"
+              name="dateFrom"
               value={filters.dateFrom}
               onChange={handleFilterChange}
               placeholder="Desde"
@@ -112,7 +112,7 @@ export const Table = () => {
             />
             <input
               type="date"
-              name="fechaHasta"
+              name="dateTo"
               value={filters.dateTo}
               onChange={handleFilterChange}
               placeholder="Hasta"
@@ -121,7 +121,7 @@ export const Table = () => {
           </div>
           <input
             type="text"
-            name="marca"
+            name="brand"
             value={filters.brand}
             onChange={handleFilterChange}
             placeholder="Marca"
@@ -129,7 +129,7 @@ export const Table = () => {
           />
           <input
             type="text"
-            name="falla"
+            name="fault"
             value={filters.fault}
             onChange={handleFilterChange}
             placeholder="Falla"
