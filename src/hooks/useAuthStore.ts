@@ -54,10 +54,10 @@ export const useAuthStore = () => {
     dispatch(onCheckLogin());
     try {
       const response = wmApi.post("/auth/register", {
-        email,
-        password,
         name,
         lastName,
+        email,
+        password,
       });
       const { data } = await response;
       localStorage.setItem("token", data.token);

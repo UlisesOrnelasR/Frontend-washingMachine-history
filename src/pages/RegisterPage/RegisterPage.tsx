@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import logo from "/images/logo.png";
@@ -56,6 +57,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
+  const { errorMessage } = useAuthStore();
 
   const { startRegister } = useAuthStore();
 
@@ -83,6 +85,12 @@ export const RegisterPage = () => {
       password: registerPassword,
     });
   };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire("Authentication failed", errorMessage, "error");
+    }
+  }, [errorMessage]);
 
   return (
     <div className="bg-dark flex flex-col min-h-screen md:p-8">
