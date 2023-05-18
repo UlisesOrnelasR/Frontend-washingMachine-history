@@ -4,67 +4,67 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { ServicesState, Service } from "../../models/services";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 
-const mockService: Service = {
-  id: "1",
-  customer: "Juan Gonzales",
-  date: format(new Date(), "yyyy-MM-dd"),
-  brand: "Whirpool",
-  fault: "Golpeaba la tina",
-  changed_parts: "amortiguadores",
-  service_cost: 300,
-  address: "Calle 123",
-  user: {
-    uid: "1",
-    name: "Ulises",
-  },
-};
+// const mockService: Service = {
+//   id: "1",
+//   customer: "Juan Gonzales",
+//   date: format(new Date(), "yyyy-MM-dd"),
+//   brand: "Whirpool",
+//   fault: "Golpeaba la tina",
+//   changed_parts: "amortiguadores",
+//   service_cost: 300,
+//   address: "Calle 123",
+//   user: {
+//     uid: "1",
+//     name: "Ulises",
+//   },
+// };
 
-const mockService2: Service = {
-  id: "2",
-  customer: "Erika Machain",
-  date: format(new Date("2022-10-12"), "yyyy-MM-dd"),
-  brand: "Samsung",
-  fault: "Tiraba Agua",
-  changed_parts: "Transmision",
-  service_cost: 2500,
-  address: "Calle juarez #555",
-  user: {
-    uid: "1",
-    name: "Ulises",
-  },
-};
+// const mockService2: Service = {
+//   id: "2",
+//   customer: "Erika Machain",
+//   date: format(new Date("2022-10-12"), "yyyy-MM-dd"),
+//   brand: "Samsung",
+//   fault: "Tiraba Agua",
+//   changed_parts: "Transmision",
+//   service_cost: 2500,
+//   address: "Calle juarez #555",
+//   user: {
+//     uid: "1",
+//     name: "Ulises",
+//   },
+// };
 
-const mockService3: Service = {
-  id: "3",
-  customer: "Angelica Martinez",
-  date: format(new Date("2022-05-01"), "yyyy-MM-dd"),
-  brand: "Keemore",
-  fault: "No exprime",
-  changed_parts: "Sensor Tapa",
-  service_cost: 800,
-  address: "Calle Zaragoza #444",
-  user: {
-    uid: "1",
-    name: "Ulises",
-  },
-};
+// const mockService3: Service = {
+//   id: "3",
+//   customer: "Angelica Martinez",
+//   date: format(new Date("2022-05-01"), "yyyy-MM-dd"),
+//   brand: "Keemore",
+//   fault: "No exprime",
+//   changed_parts: "Sensor Tapa",
+//   service_cost: 800,
+//   address: "Calle Zaragoza #444",
+//   user: {
+//     uid: "1",
+//     name: "Ulises",
+//   },
+// };
 
-const mockService4: Service = {
-  id: "4",
-  customer: "Hermelinda Montero",
-  date: format(new Date("2023-02-14"), "yyyy-MM-dd"),
-  brand: "LG",
-  fault: "No cae agua a la tina",
-  changed_parts: "Electrovalvulas",
-  service_cost: 1200,
-  address: "Calle Quinta del refugio #16",
-  user: {
-    uid: "1",
-    name: "Ulises",
-  },
-};
+// const mockService4: Service = {
+//   id: "4",
+//   customer: "Hermelinda Montero",
+//   date: format(new Date("2023-02-14"), "yyyy-MM-dd"),
+//   brand: "LG",
+//   fault: "No cae agua a la tina",
+//   changed_parts: "Electrovalvulas",
+//   service_cost: 1200,
+//   address: "Calle Quinta del refugio #16",
+//   user: {
+//     uid: "1",
+//     name: "Ulises",
+//   },
+// };
 
 export const servicesSlice = createSlice({
   name: "services",

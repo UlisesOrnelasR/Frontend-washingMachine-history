@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosInterceptorManager } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { getEnvVariables } from "../helpers";
 
 const { VITE_API_URL } = getEnvVariables();

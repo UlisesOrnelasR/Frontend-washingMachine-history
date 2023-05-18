@@ -19,6 +19,7 @@ export const Table = () => {
   });
   const [filteredServices, setFilteredServices] = useState(services);
   const [currentPage, setCurrentPage] = useState(1);
+  // @ts-ignore
   const [servicesPerPage, setServicesPerPage] = useState(20);
 
   const handleServiceClick = (service: Service) => {

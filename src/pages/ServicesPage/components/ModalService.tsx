@@ -28,6 +28,7 @@ export const ModalService = () => {
     deleteService,
     hasServiceSelected,
   } = useServicesStore();
+  // @ts-ignore
   const [formSubmited, setFormSubmited] = useState(false);
 
   const [formValues, setFormValues] = useState({

@@ -9,7 +9,7 @@ import {
   onDeleteService,
   onUnSetActiveService,
 } from "../store/services/servicesSlice";
-import { mock_services } from "../data/services";
+// import { mock_services } from "../data/services";
 import Swal from "sweetalert2";
 import { wmApi } from "../api";
 
@@ -18,7 +18,7 @@ export const useServicesStore = (): UseServicesStoreHook => {
   const { services, activeService } = useSelector(
     (state: RootState) => state.services
   );
-  const { user } = useSelector((state: RootState) => state.auth);
+  // const { user } = useSelector((state: RootState) => state.auth);
 
   const setActiveService = (tableService: Service) => {
     dispatch(onSetActiveService(tableService));

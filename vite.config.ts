@@ -5,4 +5,7 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   base: "https://UlisesOrnelasR.github.io/Frontend-washingMachine-history",
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
 });
