@@ -6,7 +6,7 @@ import { store } from "./store";
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/Frontend-washingMachine-history">
         <div className="containerApp">
           <AppRouter />
         </div>
