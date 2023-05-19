@@ -1,4 +1,8 @@
 module.exports = {
+  preset: "ts-jest",
+  transform: {
+    "^.+\\.tsx?$": "ts-jest",
+  },
   testEnvironment: "jest-environment-jsdom",
   setupFiles: ["./jest.setup.js"],
   transformIgnorePatterns: [],
