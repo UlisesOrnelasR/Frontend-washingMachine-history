@@ -1,16 +1,12 @@
-interface AuthState {
-  status: string;
-  user: {};
-  errorMessage: string | undefined;
-}
+import { AuthStates } from "../../src/models/auth";
 
-export const initialState: AuthState = {
+export const initialState: AuthStates = {
   status: "checking", // checking, authenticated, not-authenticated,
   user: {},
   errorMessage: undefined,
 };
 
-export const authenticatedState: AuthState = {
+export const authenticatedState: AuthStates = {
   status: "authenticated", // checking, authenticated, not-authenticated,
   user: {
     uid: "123ABC",
@@ -19,7 +15,7 @@ export const authenticatedState: AuthState = {
   errorMessage: undefined,
 };
 
-export const NotAuthenticatedState: AuthState = {
+export const NotAuthenticatedState: AuthStates = {
   status: "not-authenticated", // checking, authenticated, not-authenticated,
   user: {},
   errorMessage: undefined,
