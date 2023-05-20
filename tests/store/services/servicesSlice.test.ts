@@ -5,6 +5,7 @@ import {
   onLoadServices,
   onLogoutServices,
   onSetActiveService,
+  onUnSetActiveService,
   onUpdateService,
   servicesSlice,
 } from "../../../src/store/services/servicesSlice";
@@ -106,5 +107,14 @@ describe("Pruebas en servicesSlice", () => {
     );
     // console.log(state);
     expect(state).toEqual(initialState);
+  });
+
+  test("onUnSetActiveService debe de quitar el servicio activo", () => {
+    const state = servicesSlice.reducer(
+      appWithActiveServiceState,
+      onUnSetActiveService()
+    );
+    // console.log(state);
+    expect(state.activeService).toBeNull();
   });
 });
