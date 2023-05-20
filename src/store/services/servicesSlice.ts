@@ -69,7 +69,7 @@ import { ServicesState, Service } from "../../models/services";
 export const servicesSlice = createSlice({
   name: "services",
   initialState: {
-    isLoadingServices: false,
+    isLoadingServices: true,
     services: [],
     activeService: null,
   } as ServicesState,
@@ -110,7 +110,7 @@ export const servicesSlice = createSlice({
       });
     },
     onLogoutServices: (state) => {
-      state.isLoadingServices = false;
+      state.isLoadingServices = true;
       state.services = [];
       state.activeService = null;
     },
