@@ -143,4 +143,93 @@ describe("Pruebas en el hook useAuthStore", () => {
 
     spy.mockRestore(); // Destruye el espia para que las demas funciones pasen con normalidad
   });
+
+  test("startRegister debe de fallar en la creación de un usuario", async () => {
+    const newUser = {
+      email: "example@gmail.com",
+      password: "123",
+      name: "ExampleUser",
+      lastName: "Pérez",
+    };
+    const mockStore = getMockStore({
+      ...NotAuthenticatedState,
+    });
+    const wrapper = ({ children }: any) => (
+      <Provider store={mockStore}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+    const { result } = renderHook(() => useAuthStore(), {
+      wrapper,
+    });
+    // console.log(result.current);
+
+    const { startRegister } = result.current;
+    await act(async () => {
+      await startRegister(newUser);
+    });
+    const { errorMessage, status, user } = result.current;
+    expect({ errorMessage, status, user }).toEqual({
+      errorMessage: expect.any(String),
+      status: "not-authenticated",
+      user: {},
+    });
+  });
+
+  test("checkAuthToken debe de fallar si no hay un token en el local storage", async () => {
+    const mockStore = getMockStore({
+      ...initialState,
+    });
+    const wrapper = ({ children }: any) => (
+      <Provider store={mockStore}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+    const { result } = renderHook(() => useAuthStore(), {
+      wrapper,
+    });
+    // console.log(result.current);
+    const { checkAuthToken } = result.current;
+    await act(async () => {
+      await checkAuthToken();
+    });
+    const { errorMessage, status, user } = result.current;
+    // console.log({ errorMessage, status, user });
+    expect({ errorMessage, status, user }).toEqual({
+      errorMessage: undefined,
+      status: "not-authenticated",
+      user: {},
+    });
+  });
+
+  test("checkAuthToken debe de autenticar un usuario si hay un token", async () => {
+    const { data } = await wmApi.post("/auth", testUserCredentials);
+    // console.log(data);
+    localStorage.setItem("token", data.token);
+    const mockStore = getMockStore({
+      ...initialState,
+    });
+    const wrapper = ({ children }: any) => (
+      <Provider store={mockStore}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
+    // console.log("token", localStorage.getItem("token"));
+
+    const { result } = renderHook(() => useAuthStore(), {
+      wrapper,
+    });
+    // console.log(result.current);
+    const { checkAuthToken } = result.current;
+    await act(async () => {
+      await checkAuthToken();
+    });
+    const { errorMessage, status, user } = result.current;
+    // console.log({ errorMessage, status, user });
+    expect({ errorMessage, status, user }).toEqual({
+      errorMessage: undefined,
+      status: "authenticated",
+      user: { name: "testUser", uid: "64593ea01d158f1211a898e9" },
+    });
+  });
 });
