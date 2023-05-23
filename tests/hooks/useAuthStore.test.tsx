@@ -8,6 +8,7 @@ import { AuthStates } from "../../src/models/auth";
 import { NotAuthenticatedState, initialState } from "../fixtures/authStates";
 import { BrowserRouter } from "react-router-dom";
 import { testUser, testUserCredentials } from "../fixtures/testUser";
+import { wmApi } from "../../src/api/wmApi";
 
 const getMockStore = (initialState: AuthStates) => {
   return configureStore({
@@ -71,7 +72,7 @@ describe("Pruebas en el hook useAuthStore", () => {
     expect(localStorage.getItem("token")).toEqual(expect.any(String));
   });
 
-  test("startLogin debe ded fallar en el login", async () => {
+  test("startLogin debe de fallar en el login", async () => {
     const mockStore = getMockStore({
       ...NotAuthenticatedState,
     });
@@ -98,7 +99,7 @@ describe("Pruebas en el hook useAuthStore", () => {
     expect(localStorage.getItem("token")).toBeNull();
   });
 
-  test("startRegister debe de realizar el registro correctamente", () => {
+  test("startRegister debe de realizar el registro correctamente", async () => {
     const newUser = {
       email: "example@gmail.com",
       password: "123456",
@@ -117,7 +118,29 @@ describe("Pruebas en el hook useAuthStore", () => {
     const { result } = renderHook(() => useAuthStore(), {
       wrapper,
     });
-    console.log(result.current);
+    // console.log(result.current);
+
     const { startRegister } = result.current;
+    const spy = jest.spyOn(wmApi, "post").mockResolvedValue({
+      data: {
+        ok: true,
+        uid: "1263781293",
+        name: "ExampleUser",
+        token: "ALGUN-TOKEN",
+      },
+    });
+    await act(async () => {
+      await startRegister(newUser);
+    });
+    const { errorMessage, status, user } = result.current;
+    // console.log({ errorMessage, status, user });
+
+    expect({ errorMessage, status, user }).toEqual({
+      errorMessage: undefined,
+      status: "authenticated",
+      user: { name: "ExampleUser", uid: "1263781293" },
+    });
+
+    spy.mockRestore(); // Destruye el espia para que las demas funciones pasen con normalidad
   });
 });
