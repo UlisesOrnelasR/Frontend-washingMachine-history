@@ -10,7 +10,7 @@ type PrivateRouteProps = {
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const { status, checkAuthToken } = useAuthStore();
 
-  // const status: String = "authenticated"; // "checking"  "authenticated"  "not-authenticated"
+  // const status: String = "authenticated" "checking" "not-authenticated"
   useEffect(() => {
     checkAuthToken();
   }, []);

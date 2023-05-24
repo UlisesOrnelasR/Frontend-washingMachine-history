@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { useAuthStore } from "../../src/hooks/useAuthStore";
 import { AppRouter } from "../../src/router/AppRouter";
 import { MemoryRouter } from "react-router-dom";
