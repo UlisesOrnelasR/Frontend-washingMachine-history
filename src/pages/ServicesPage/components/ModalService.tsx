@@ -10,9 +10,13 @@ import { es } from "date-fns/locale";
 
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getEnvVariables } from "../../../helpers";
 
 registerLocale("es", es);
-Modal.setAppElement("#root");
+
+if (getEnvVariables().VITE_MODE !== "test") {
+  Modal.setAppElement("#root");
+}
 
 const user = {
   uid: Math.random().toString(),

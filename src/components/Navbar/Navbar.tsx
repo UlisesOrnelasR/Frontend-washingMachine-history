@@ -15,7 +15,7 @@ export const Navbar = () => {
             <span className="animate-ping opacity-75 absolute bg-green-600 w-2 h-2 top-0 right-0.5 rounded-full ring-2 ring-white"></span>
           </div>
           <h1 className="text-xl text-white font-bold mb-2">
-            {(user as User).name}
+            {(user as User)?.name}
             <span className="text-secondary">.</span>
           </h1>
         </div>
