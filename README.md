@@ -25,4 +25,14 @@
 4. Haz push a la rama: `git push origin feature/nueva-funcionalidad`
 5. Envía un pull request
 
+![signin](https://github.com/UlisesOrnelasR/Frontend-washingMachine-history/assets/99143567/f0d52c54-a64d-4092-a60f-06debf6e4d91)
+
+
+![home](https://github.com/UlisesOrnelasR/Frontend-washingMachine-history/assets/99143567/1493ef32-0518-4df2-bfb8-6b96d2658f85)
+
+
+![add](https://github.com/UlisesOrnelasR/Frontend-washingMachine-history/assets/99143567/11bcd041-e6e7-470e-9052-90d736db8698)
+
+
+
 
